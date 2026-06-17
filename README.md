@@ -33,20 +33,14 @@ Nach jedem Spiel kannst du deinen Namen eintragen. Das Spiel speichert die Top 1
 - **Java 17 oder neuer** (JDK, nicht nur JRE)
 - **BlueJ** (empfohlen) oder ein beliebiges Java-IDE
 
-### Java installieren
 
-- Windows/macOS: [adoptium.net](https://adoptium.net)
-- Arch Linux: `sudo pacman -S jdk-openjdk`
-- Ubuntu/Debian: `sudo apt install default-jdk`
-
----
 
 ## 🚀 Starten
 
 ### Mit BlueJ (empfohlen)
 
 1. ZIP entpacken
-2. `MathQuest_new/` in BlueJ öffnen (`package.bluej` doppelklicken)
+2. `MathQuest/` in BlueJ öffnen (`package.bluej` doppelklicken)
 3. **Compile** (Strg+Shift+C) – einmalig nötig, da keine `.class`-Dateien enthalten sind
 4. Rechtsklick auf `MathQuest` → `void main(String[] args)` → OK
 
