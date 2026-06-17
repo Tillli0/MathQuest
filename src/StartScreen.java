@@ -41,10 +41,16 @@ public class StartScreen extends JFrame {
         private Color[] sc = new Color[NUM_STARS];
 
         // Buttons
-        private Rectangle btnPlay   = new Rectangle(275, 360, 250, 55);
-        private Rectangle btnScore  = new Rectangle(275, 430, 250, 55);
-        private Rectangle btnQuit   = new Rectangle(275, 500, 250, 55);
+        private Rectangle btnPlay   = new Rectangle(275, 390, 250, 55);
+        private Rectangle btnScore  = new Rectangle(275, 460, 250, 55);
+        private Rectangle btnQuit   = new Rectangle(275, 530, 250, 55);
         private Rectangle hoveredBtn = null;
+
+        // Schwierigkeits-Buttons
+        private static final int DIFF_Y = 305;
+        private Rectangle btnLeicht = new Rectangle(145, DIFF_Y, 150, 44);
+        private Rectangle btnMittel = new Rectangle(325, DIFF_Y, 150, 44);
+        private Rectangle btnSchwer = new Rectangle(505, DIFF_Y, 150, 44);
 
         // Schwert-Wackeln
         private double swordAngle = 0;
@@ -66,17 +72,23 @@ public class StartScreen extends JFrame {
             addMouseListener(new MouseAdapter() {
                 @Override public void mouseClicked(MouseEvent e) {
                     Point p = e.getPoint();
-                    if (btnPlay.contains(p))  startGame();
-                    if (btnScore.contains(p)) showHighscores();
-                    if (btnQuit.contains(p))  System.exit(0);
+                    if (btnPlay.contains(p))   startGame();
+                    if (btnScore.contains(p))  showHighscores();
+                    if (btnQuit.contains(p))   System.exit(0);
+                    if (btnLeicht.contains(p)) GameData.setDifficulty(GameData.Difficulty.LEICHT);
+                    if (btnMittel.contains(p)) GameData.setDifficulty(GameData.Difficulty.MITTEL);
+                    if (btnSchwer.contains(p)) GameData.setDifficulty(GameData.Difficulty.SCHWER);
                 }
             });
             addMouseMotionListener(new MouseMotionAdapter() {
                 @Override public void mouseMoved(MouseEvent e) {
                     Point p = e.getPoint();
-                    if (btnPlay.contains(p))       hoveredBtn = btnPlay;
-                    else if (btnScore.contains(p)) hoveredBtn = btnScore;
-                    else if (btnQuit.contains(p))  hoveredBtn = btnQuit;
+                    if (btnPlay.contains(p))        hoveredBtn = btnPlay;
+                    else if (btnScore.contains(p))  hoveredBtn = btnScore;
+                    else if (btnQuit.contains(p))   hoveredBtn = btnQuit;
+                    else if (btnLeicht.contains(p)) hoveredBtn = btnLeicht;
+                    else if (btnMittel.contains(p)) hoveredBtn = btnMittel;
+                    else if (btnSchwer.contains(p)) hoveredBtn = btnSchwer;
                     else                            hoveredBtn = null;
                     setCursor(hoveredBtn != null ?
                         Cursor.getPredefinedCursor(Cursor.HAND_CURSOR) :
@@ -166,10 +178,57 @@ public class StartScreen extends JFrame {
             drawButton(g2, btnQuit,  "✖  Beenden",         btnQuit  == hoveredBtn);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
+            // ── Schwierigkeit ─────────────────────────────────────────────
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, btnAlpha));
+            g2.setFont(new Font("SansSerif", Font.BOLD, 14));
+            g2.setColor(new Color(180,160,220));
+            FontMetrics lm = g2.getFontMetrics();
+            String diffLabel = "Schwierigkeit:";
+            g2.drawString(diffLabel, (800 - lm.stringWidth(diffLabel)) / 2, DIFF_Y - 10);
+            drawDiffButton(g2, btnLeicht, GameData.Difficulty.LEICHT);
+            drawDiffButton(g2, btnMittel, GameData.Difficulty.MITTEL);
+            drawDiffButton(g2, btnSchwer, GameData.Difficulty.SCHWER);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
             // ── Untertitel ────────────────────────────────────────────────
             g2.setFont(new Font("SansSerif", Font.PLAIN, 11));
             g2.setColor(new Color(120,100,160));
             g2.drawString("Löse 10 Aufgaben aus dem 1×1 so schnell wie möglich!", 215, 578);
+        }
+
+        private void drawDiffButton(Graphics2D g2, Rectangle r, GameData.Difficulty diff) {
+            boolean selected = GameData.getDifficulty() == diff;
+            boolean hovered  = hoveredBtn == r;
+
+            // Schatten
+            g2.setColor(new Color(0,0,0,60));
+            g2.fillRoundRect(r.x+3, r.y+3, r.width, r.height, 14, 14);
+
+            // Körper
+            Color base = diff.color;
+            Color top  = selected ? base.brighter() : (hovered ? base : base.darker());
+            Color bot  = selected ? base : base.darker().darker();
+            GradientPaint gp = new GradientPaint(r.x, r.y, top, r.x, r.y+r.height, bot);
+            g2.setPaint(gp);
+            g2.fillRoundRect(r.x, r.y, r.width, r.height, 14, 14);
+
+            // Rand – dicker wenn ausgewählt
+            g2.setColor(selected ? Color.WHITE : (hovered ? base.brighter() : base));
+            g2.setStroke(new BasicStroke(selected ? 2.5f : 1.2f));
+            g2.drawRoundRect(r.x, r.y, r.width, r.height, 14, 14);
+            g2.setStroke(new BasicStroke(1f));
+
+            // Text
+            String label = diff.label;
+            String range = "(" + diff.min + "–" + diff.max + "×" + diff.min + "–" + diff.max + ")";
+            g2.setFont(new Font("SansSerif", Font.BOLD, 15));
+            FontMetrics fm = g2.getFontMetrics();
+            g2.setColor(Color.WHITE);
+            g2.drawString(label, r.x + (r.width - fm.stringWidth(label)) / 2, r.y + 18);
+            g2.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            fm = g2.getFontMetrics();
+            g2.setColor(selected ? Color.WHITE : new Color(220,220,220,180));
+            g2.drawString(range, r.x + (r.width - fm.stringWidth(range)) / 2, r.y + 33);
         }
 
         private void drawButton(Graphics2D g2, Rectangle r, String label, boolean hovered) {

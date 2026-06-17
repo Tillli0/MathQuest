@@ -5,6 +5,29 @@ import java.io.*;
  * Gemeinsame Spielzustandsverwaltung und Highscore-System.
  */
 public class GameData {
+
+    // ─── Schwierigkeit ────────────────────────────────────────────────────
+    public enum Difficulty {
+        LEICHT("Leicht",   1, 5,  new java.awt.Color(60,180,80)),
+        MITTEL("Mittel",   1, 10, new java.awt.Color(220,160,40)),
+        SCHWER("Schwer",   7, 15, new java.awt.Color(200,50,50));
+
+        public final String label;
+        public final int min, max;
+        public final java.awt.Color color;
+        Difficulty(String label, int min, int max, java.awt.Color color) {
+            this.label = label; this.min = min; this.max = max; this.color = color;
+        }
+        /** Liefert einen zufälligen Faktor im Bereich [min, max] */
+        public int randomFactor() {
+            return min + (int)(Math.random() * (max - min + 1));
+        }
+    }
+
+    private static Difficulty currentDifficulty = Difficulty.MITTEL;
+
+    public static void setDifficulty(Difficulty d) { currentDifficulty = d; }
+    public static Difficulty getDifficulty()        { return currentDifficulty; }
     // Highscore-Eintrag
     public static class ScoreEntry implements Comparable<ScoreEntry> {
         public String name;

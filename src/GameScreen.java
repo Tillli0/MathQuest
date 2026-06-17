@@ -68,7 +68,7 @@ public class GameScreen extends JFrame {
     private int tick = 0;
 
     public GameScreen() {
-        setTitle("MathQuest – Kampf!");
+        setTitle("MathQuest – Kampf! [" + GameData.getDifficulty().label + "]");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -118,9 +118,9 @@ public class GameScreen extends JFrame {
     }
 
     private void generateQuestion() {
-        Random rng = new Random();
-        factor1 = 1 + rng.nextInt(10);
-        factor2 = 1 + rng.nextInt(10);
+        GameData.Difficulty diff = GameData.getDifficulty();
+        factor1 = diff.randomFactor();
+        factor2 = diff.randomFactor();
         correctAnswer = factor1 * factor2;
         currentEnemy = questionIndex % ENEMY_NAMES.length;
         enemyHP = 10;
@@ -451,10 +451,16 @@ public class GameScreen extends JFrame {
             // Frage-Box
             g2.setColor(new Color(0,0,0,160));
             g2.fillRoundRect(160, 390, 480, 70, 16, 16);
-            g2.setColor(new Color(140,80,220));
+            GameData.Difficulty diff = GameData.getDifficulty();
+            g2.setColor(diff.color.darker());
             g2.setStroke(new BasicStroke(2));
             g2.drawRoundRect(160, 390, 480, 70, 16, 16);
             g2.setStroke(new BasicStroke(1));
+
+            // Schwierigkeits-Badge
+            g2.setFont(new Font("SansSerif", Font.BOLD, 11));
+            g2.setColor(diff.color.brighter());
+            g2.drawString("▶ " + diff.label, 170, 405);
 
             String q = factor1 + "  ×  " + factor2 + "  =  ?";
             Font qf = new Font("SansSerif", Font.BOLD, 32);
