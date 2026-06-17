@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=GameData
+comment0.text=\r\n\ Gemeinsame\ Spielzustandsverwaltung\ und\ Highscore-System.\r\n
+comment1.params=name\ avgMs\ correct
+comment1.target=void\ addScore(java.lang.String,\ long,\ int)
+comment2.params=
+comment2.target=java.util.List\ getHighscores()
+comment3.params=
+comment3.target=void\ loadScores()
+comment4.params=
+comment4.target=void\ saveScores()
+comment5.params=
+comment5.target=void\ saveScoresText()
+numComments=6

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ResultScreen
+comment0.text=\r\n\ Ergebnis-Bildschirm\ nach\ 10\ Aufgaben.\r\n\ Zeigt\ Auswertung,\ Zeitdiagramm\ und\ Namenseingabe\ f\u00C3\u00BCr\ Highscore.\r\n
+comment1.params=avgMs\ correctCount\ times
+comment1.target=ResultScreen(long,\ int,\ long[])
+comment2.params=
+comment2.target=void\ spawnConfetti()
+comment3.params=
+comment3.target=void\ updateConfetti()
+numComments=4

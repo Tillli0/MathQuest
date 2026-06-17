@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=MathQuest
+comment0.text=\r\n\ MathQuest\ -\ Das\ Kopfrechenspiel\r\n\ Starte\ das\ Spiel\ mit\ der\ main()-Methode.\r\n\ Kompatibel\ mit\ BlueJ.\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2
