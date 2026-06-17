@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.Random;
 import java.util.ArrayList;
 
+
 /**
  * Highscore-Bildschirm mit animierter Tabelle.
  */
@@ -36,7 +37,7 @@ public class HighscoreScreen extends JFrame {
             setLayout(null);
             setOpaque(false);
 
-            backBtn = new JButton("�? Zurück zum Menü");
+            backBtn = new JButton("← Zurück zum Menü");
             backBtn.setBounds(280, 540, 240, 40);
             backBtn.setFont(new Font("SansSerif", Font.BOLD, 14));
             backBtn.setBackground(new Color(60,30,120));
@@ -75,7 +76,7 @@ public class HighscoreScreen extends JFrame {
             Font tf = new Font("SansSerif", Font.BOLD, 44);
             g2.setFont(tf);
             FontMetrics fm = g2.getFontMetrics();
-            String title = "�?� Highscores";
+            String title = "🏆 Highscores";
             // Glow
             g2.setColor(new Color(200,150,0,40));
             for (int d=12;d>0;d-=3)

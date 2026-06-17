@@ -5,6 +5,7 @@ import java.awt.geom.*;
 import java.util.Random;
 import java.util.ArrayList;
 
+
 /**
  * Ergebnis-Bildschirm nach 10 Aufgaben.
  * Zeigt Auswertung, Zeitdiagramm und Namenseingabe f√ºr Highscore.
@@ -96,7 +97,7 @@ public class ResultScreen extends JFrame {
             nameField.setHorizontalAlignment(JTextField.CENTER);
             add(nameField);
 
-            submitBtn = makeButton("ü?Ü Eintragen", 430, 455, 140, 38, new Color(80,30,160));
+            submitBtn = makeButton("üèÜ Eintragen", 430, 455, 140, 38, new Color(80,30,160));
             submitBtn.addActionListener(e -> {
                 if (!submitted) {
                     String name = nameField.getText().trim();
@@ -113,11 +114,11 @@ public class ResultScreen extends JFrame {
             playAgainBtn.addActionListener(e -> { animTimer.stop(); dispose(); new GameScreen(); });
             add(playAgainBtn);
 
-            scoreBtn = makeButton("ü?Ü Highscores", 320, 520, 160, 40, new Color(100,60,20));
+            scoreBtn = makeButton("üèÜ Highscores", 320, 520, 160, 40, new Color(100,60,20));
             scoreBtn.addActionListener(e -> { animTimer.stop(); dispose(); new HighscoreScreen(); });
             add(scoreBtn);
 
-            menuBtn = makeButton("ü?† Men√º", 500, 520, 160, 40, new Color(40,40,100));
+            menuBtn = makeButton("üè† Men√º", 500, 520, 160, 40, new Color(40,40,100));
             menuBtn.addActionListener(e -> { animTimer.stop(); dispose(); new StartScreen(); });
             add(menuBtn);
         }
@@ -267,7 +268,7 @@ public class ResultScreen extends JFrame {
 
             g2.setFont(new Font("SansSerif", Font.BOLD, 14));
             g2.setColor(new Color(200,170,255));
-            g2.drawString("‚?± Zeitverlauf (ms)", ox+10, 130);
+            g2.drawString("‚è± Zeitverlauf (ms)", ox+10, 130);
 
             // Achsen
             g2.setColor(new Color(100,80,150));

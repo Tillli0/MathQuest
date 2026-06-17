@@ -162,7 +162,7 @@ public class StartScreen extends JFrame {
             // ── Buttons ───────────────────────────────────────────────────
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, btnAlpha));
             drawButton(g2, btnPlay,  "⚔  Spiel starten",  btnPlay  == hoveredBtn);
-            drawButton(g2, btnScore, "� Highscores",      btnScore == hoveredBtn);
+            drawButton(g2, btnScore, "🏆 Highscores",      btnScore == hoveredBtn);
             drawButton(g2, btnQuit,  "✖  Beenden",         btnQuit  == hoveredBtn);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 

@@ -5,6 +5,8 @@ import java.awt.geom.*;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+
 /**
  * Hauptspielbildschirm: Held kämpft gegen Monster.
  * Jede richtige Antwort = Schwerthieb, falsche = Gegner schlägt zurück.
@@ -466,7 +468,7 @@ public class GameScreen extends JFrame {
             g2.setFont(new Font("SansSerif", Font.PLAIN, 12));
             g2.setColor(elapsed < 3000 ? new Color(100,200,100) :
                         elapsed < 6000 ? new Color(220,180,50) : new Color(220,80,80));
-            g2.drawString("� " + elapsed + " ms", 630, 410);
+            g2.drawString("⏱ " + elapsed + " ms", 630, 410);
         }
 
         /** Pixelartiger Held */
