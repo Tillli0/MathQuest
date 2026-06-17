@@ -1,48 +1,93 @@
-# MathQuest – Der Kampf der Zahlen
-## BlueJ-Projekt: 1×1 Kopfrechenspiel
+# ⚔️ MathQuest – Der Kampf der Zahlen
 
-### Installation & Start
-1. Alle `.java`-Dateien in einen Ordner entpacken
-2. In BlueJ: **Project → Open Non BlueJ...** → Ordner auswählen
-3. Alle Klassen kompilieren (Compile-Button oder Strg+K)
+Ein Java-Lernspiel für das kleine Einmaleins. Löse Rechenaufgaben im Kampf gegen Monster – je schneller und genauer, desto besser dein Score.
+
+---
+
+## 🎮 Spielprinzip
+
+Du kämpfst als Held gegen 10 verschiedene Monster. Für jede richtige Antwort greifst du an – bei einer falschen schlägt der Gegner zurück. Am Ende siehst du deine Durchschnittszeit, deine Trefferquote und eine Sternewertung.
+
+---
+
+## 🧩 Schwierigkeiten
+
+Vor dem Spielstart kannst du eine von drei Stufen wählen:
+
+| Stufe      | Faktoren   | Beispiel     |
+|------------|------------|--------------|
+| **Leicht** | 1 – 5      | 3 × 4 = ?    |
+| **Mittel** | 1 – 10     | 7 × 8 = ?    |
+| **Schwer** | 7 – 15     | 12 × 14 = ?  |
+
+---
+
+## 🏆 Highscores
+
+Nach jedem Spiel kannst du deinen Namen eintragen. Das Spiel speichert die Top 10 nach Durchschnittszeit (weniger = besser). Bei Gleichstand gewinnt, wer mehr Aufgaben richtig hatte.
+
+---
+
+## 🛠️ Voraussetzungen
+
+- **Java 17 oder neuer** (JDK, nicht nur JRE)
+- **BlueJ** (empfohlen) oder ein beliebiges Java-IDE
+
+### Java installieren
+
+- Windows/macOS: [adoptium.net](https://adoptium.net)
+- Arch Linux: `sudo pacman -S jdk-openjdk`
+- Ubuntu/Debian: `sudo apt install default-jdk`
+
+---
+
+## 🚀 Starten
+
+### Mit BlueJ (empfohlen)
+
+1. ZIP entpacken
+2. `MathQuest_new/` in BlueJ öffnen (`package.bluej` doppelklicken)
+3. **Compile** (Strg+Shift+C) – einmalig nötig, da keine `.class`-Dateien enthalten sind
 4. Rechtsklick auf `MathQuest` → `void main(String[] args)` → OK
 
-### Spielablauf
-- Du bist ein Held in einer Fantasy-Arena
-- Für jede richtige Antwort greifst du den Gegner an (Animationen!)
-- Bei falscher Antwort schlägt der Gegner zurück
-- Nach 10 Aufgaben: Auswertung mit Zeitdiagramm
-- Highscore-Eintrag mit Name möglich
+### Über die Kommandozeile
 
-### Dateien
-| Datei | Beschreibung |
-|-------|-------------|
-| `MathQuest.java` | Einstiegspunkt (main-Methode) |
-| `StartScreen.java` | Animierter Titelbildschirm mit Menü |
-| `GameScreen.java` | Hauptspiel: Held + 5 verschiedene Monster |
-| `ResultScreen.java` | Ergebnis, Zeitdiagramm, Sterne, Konfetti |
-| `HighscoreScreen.java` | Top-10 Highscore-Tabelle |
-| `GameData.java` | Highscore-Speicherung (highscores.dat) |
+```bash
+cd MathQuest_new
+javac *.java
+java MathQuest
+```
 
-### Features
-- ✅ Zufällige 1×1-Aufgaben (1–10)
-- ✅ Millisekunden-genaue Zeitmessung
-- ✅ 5 verschiedene Monster (Goblin, Skelett, Troll, Werwolf, Drache)
-- ✅ Angriffs-Animationen mit Partikeleffekten
-- ✅ Schwebender Held mit Schwert & Schild
-- ✅ HP-Balken für Held und Gegner
-- ✅ Fortschrittsanzeige (10 Punkte)
-- ✅ Flash-Effekte bei Treffern
-- ✅ Konfetti bei 3-Sterne-Ergebnis
-- ✅ Zeitbalken-Diagramm im Ergebnis
-- ✅ Sterne-Bewertung (1–3 Sterne)
-- ✅ Persistente Highscore-Tabelle (Top 10)
-- ✅ Animierter Startscreen mit Sterne-Regen
-- ✅ ~60 fps Animationen
+---
 
-### Bewertungssystem
-| Sterne | Bedingung |
-|--------|-----------|
-| ★★★ | Ø < 2000ms UND ≥ 9 richtig |
-| ★★☆ | Ø < 4000ms UND ≥ 7 richtig |
-| ★☆☆ | sonst |
+## 📁 Projektstruktur
+
+```
+MathQuest_new/
+├── MathQuest.java          # Einstiegspunkt (main)
+├── StartScreen.java        # Hauptmenü mit Schwierigkeitsauswahl
+├── GameScreen.java         # Spielbildschirm (Kampf, Animationen)
+├── ResultScreen.java       # Ergebnisanzeige nach 10 Aufgaben
+├── HighscoreScreen.java    # Highscore-Tabelle
+├── GameData.java           # Schwierigkeiten, Scores, Datei-I/O
+└── package.bluej           # BlueJ-Projektdatei
+```
+
+---
+
+## 💾 Highscore-Datei
+
+Scores werden als `highscores.dat` im Arbeitsverzeichnis gespeichert (Java-Serialisierung). Die Datei wird automatisch angelegt. Zum Zurücksetzen einfach löschen.
+
+---
+
+## 🔧 Änderungen gegenüber der Ursprungsversion
+
+- Drei wählbare Schwierigkeitsstufen (Leicht / Mittel / Schwer) im Startmenü
+- Schwierigkeit wird im Spielbildschirm als Badge angezeigt
+- Farbkodierung je Schwierigkeit (grün / gelb / rot)
+- Alte `.class`-Dateien entfernt – sauberes Projekt für BlueJ
+
+---
+
+*Erstellt mit BlueJ · Java Swing · keine externen Abhängigkeiten*
